@@ -36,6 +36,9 @@ attributes:
   bc_email:
      label: "Preferred email address"
      help: "Enter the email address you'd like notifications sent to and check whether you want emails sent when your job starts, ends or both"
+  email_on_terminated:
+    label: "I would like to receive an email when the job terminates"
+    widget: check_box
 
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
