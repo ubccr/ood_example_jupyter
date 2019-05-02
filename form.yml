@@ -8,7 +8,7 @@
 # under /etc/ood/config/clusters.d/*.yml
 # @example Use the Owens cluster at Ohio Supercomputer Center
 #     cluster: "owens"
-cluster: ""
+cluster: "ub-hpc"
 
 # Define attribute values that aren't meant to be modified by the user within
 # the Dashboard form
@@ -25,11 +25,17 @@ attributes:
   #     modules: "python/3.5"
   # @example Using combination of modules
   #     modules: "python/3.5 cuda/8.0.44"
-  modules: "python"
+  modules: "python/my-python-37"
+  desktop: "opengl"
 
   # Any extra command line arguments to feed to the `jupyter notebook ...`
   # command that launches the Jupyter notebook within the batch job
   extra_jupyter_args: ""
+  bc_qos: 
+     help: "Should be the same as partition unless using 'supporters' - Can be left blank if using general-compute"
+  bc_email:
+     label: "Preferred email address"
+     help: "Enter the email address you'd like notifications sent to and check whether you want emails sent when your job starts, ends or both"
 
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
@@ -45,6 +51,9 @@ form:
   - extra_jupyter_args
   - bc_account
   - bc_queue
+  - bc_qos
   - bc_num_hours
   - bc_num_slots
+  - bc_email
   - bc_email_on_started
+  - email_on_terminated

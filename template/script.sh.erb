@@ -26,4 +26,5 @@ echo "TIMING - Starting jupyter at: $(date)"
 
 # Launch the Jupyter Notebook Server
 set -x
+unset XDG_RUNTIME_DIR
 jupyter notebook --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>
