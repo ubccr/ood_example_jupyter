@@ -32,13 +32,36 @@ attributes:
   # command that launches the Jupyter notebook within the batch job
   extra_jupyter_args: ""
   bc_qos: 
-     help: "Should be the same as partition unless using 'supporters' - Can be left blank if using general-compute"
+     help: "Enter the same as partition name unless you have access to a QOS for a priority boost"
   email:
      label: "Preferred email address"
      help: "Enter the email address you'd like notifications sent to and check whether you want emails sent when your job starts, ends or both"
   email_on_terminated:
     label: "I would like to receive an email when the job terminates"
     widget: check_box
+  custom_queue:
+    label: Partition
+    help: Please select a partition from the drop-down menu
+    widget: select
+    options:
+      - [ "cascade", "cascade" ]
+      - [ "debug", "debug" ]
+      - [ "general-compute", "general-compute" ]
+      - [ "gpu", "gpu" ]
+      - [ "largemem", "largemem" ]
+      - [ "skylake", "skylake" ]
+  exclude_host:
+    label: "Exclude host"
+    help:  "Enter the hostname you'd like to exclude from your job.  Separate multiple hostnames using commas"
+  num_cores:
+    label: "Number of Cores"
+    help: "Number of cores per node"
+    widget: "number_field"
+  memory:
+    label: "Amount of Memory Per Node"
+    help:  "Enter the amount of memory you want to request, per node, in megabytes (MB)."
+    widget: "number_field"
+
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
 # files
@@ -56,6 +79,9 @@ form:
   - bc_qos
   - bc_num_hours
   - bc_num_slots
+  - num_cores
+  - memory
+  - exclude_host
   - email
   - bc_email_on_started
   - email_on_terminated
