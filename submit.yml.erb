@@ -26,8 +26,17 @@ batch_connect:
 #
 #script:
 #  queue_name: "queue1"
+  queue_name: <%= custom_queue %> 
+
 #  accounting_id: "account1"
 #  email_on_started: true
 #  native: # ... array of command line arguments ...
   email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
   email: <%= email %> <% end %>
+  native:
+    - "-N"
+    - "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"
+    - "--ntasks"
+    - "<%= num_cores.blank? ? 1 : num_cores.to_i %>"
+    - "--mem"
+    - "<%= memory %>"
